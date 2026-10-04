@@ -101,4 +101,3 @@ To rebuild the public page from the capstone markdown and committed figure, inst
 ## 8. Acknowledgments and data credit
 
 Built on the FlyRank ML Internship dataset, with data credit to [FlyRank](https://flyrank.ai) and the [warehouse release](https://huggingface.co/datasets/FlyRank/internship-warehouse). The [FlyRank SEO research paper, March 2026](https://github.com/flyrank-bih/flyrank-ml-internship-starter/blob/main/docs/flyrank-seo-research-march-2026.pdf) informed the methodology questions in Week 6; its task and labels differ from this experiment. AI assisted with drafting and code; the committed notebook outputs and checks document the validation performed here. This public release does not provide the context needed to assess individual clients or publish content changes.
-

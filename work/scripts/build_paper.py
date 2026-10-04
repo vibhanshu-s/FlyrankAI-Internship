@@ -46,7 +46,7 @@ html = f'''<!doctype html>
 {body}
 <footer>Historical research · Human review required · No automatic content changes</footer>
 </main></body></html>'''
-(ROOT / 'work/capstone_report.md').write_text(paper + '\n', encoding='utf-8')
+(ROOT / 'work/capstone_report.md').write_text(paper.rstrip() + '\n', encoding='utf-8')
 (ROOT / 'docs/index.html').write_text(html, encoding='utf-8')
 (ROOT / 'docs/.nojekyll').touch()
 (ROOT / 'docs/figures').mkdir(exist_ok=True)
