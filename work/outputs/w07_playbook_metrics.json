@@ -1,0 +1,107 @@
+{
+  "contract": {
+    "revision": "50cbf7c3909d07be4d1b5906b4d09e882e5acbf2",
+    "source_month": "2026-03",
+    "feature_window": [
+      "2026-03-01",
+      "2026-03-14"
+    ],
+    "decision_date": "2026-03-18",
+    "outcome_window": [
+      "2026-03-18",
+      "2026-03-31"
+    ],
+    "minimum_earlier_impressions": 100,
+    "usable_days_per_window": 14,
+    "target": "later_impressions < 0.8 * earlier_impressions",
+    "features": [
+      "log_impressions",
+      "log_clicks",
+      "ctr_pct",
+      "weighted_position",
+      "active_search_days"
+    ],
+    "split": "GroupShuffleSplit(test_size=0.25, random_state=42)",
+    "primary_metric": "macro_precision_at_20_full_client_queues"
+  },
+  "data_fingerprint": "c73764da98e0259c44433ae22ebbc30ea8a7abfea0ee4d426dafa63fe5eab35c",
+  "selected_method": "logistic_regression_oof",
+  "validated_metrics": {
+    "Frozen rule / all OOF pages": {
+      "roc_auc": 0.5169988749431901,
+      "average_precision": 0.3685403696620565,
+      "macro_precision_at_20": 0.3826086956521739,
+      "macro_base_rate_same_clients": 0.4022673233211179,
+      "full_queue_clients": 23,
+      "short_queue_clients": 9,
+      "short_queue_mean": 0.26666666666666666,
+      "pages": 57459,
+      "clients": 32,
+      "pooled_base_rate": 0.36640038984319256
+    },
+    "Logistic regression / all OOF pages": {
+      "roc_auc": 0.584712609505931,
+      "average_precision": 0.4396758008502023,
+      "macro_precision_at_20": 0.5717391304347826,
+      "macro_base_rate_same_clients": 0.4022673233211179,
+      "full_queue_clients": 23,
+      "short_queue_clients": 9,
+      "short_queue_mean": 0.26666666666666666,
+      "pages": 57459,
+      "clients": 32,
+      "pooled_base_rate": 0.36640038984319256
+    }
+  },
+  "paired_client_gain": {
+    "mean": 0.1891304347826087,
+    "bootstrap_95_lower": 0.11516304347826087,
+    "bootstrap_95_upper": 0.2673913043478261,
+    "full_queue_clients": 23,
+    "resamples": 2000,
+    "seed": 42
+  },
+  "source_receipts_sha256": {
+    "w04_baseline_metrics.json": "e96db59f8f431995224b5f409b0286ffd0cfda43be312b6f0c7070e8424396ce",
+    "w05_model_metrics.json": "86f351290ee6385b938f7ad024eab2f1a8fa693c507a57eba1c2d12257579213",
+    "w06_validation_metrics.json": "4fc2cdc88ed4e5b1895386170607cbc04c135bf32bc45dce52a1a1263ccd006a"
+  },
+  "main_queue_rows": 57459,
+  "main_queue_clients": 32,
+  "coverage_followup_rows": 3075,
+  "budgeted_reviews": 504,
+  "archetype_counts": {
+    "visible_weak_click_capture": 36181,
+    "limited_search_position": 11167,
+    "established_visibility": 10111
+  },
+  "action_counts": {
+    "monitor": 56955,
+    "inspect_snippet_and_intent": 265,
+    "inspect_relevance_and_internal_links": 205,
+    "check_facts_and_search_context": 34
+  },
+  "monitoring_plan": {
+    "status": "proposed research monitoring; not deployed",
+    "review_capacity_per_client": 20,
+    "assumed_initial_review_minutes": 15,
+    "pause_on_incomplete_feature_coverage": true,
+    "investigate_missing_position_fraction_above": 0.05,
+    "investigate_unknown_outcome_fraction_above": 0.1,
+    "investigate_base_rate_change_absolute": 0.1,
+    "compare_model_to_rule_after_completed_periods": 2,
+    "editor_feedback_minimum_reviews": 20,
+    "investigate_acceptance_fraction_below": 0.5,
+    "automatic_retraining": false,
+    "automatic_content_changes": false
+  },
+  "exports": {
+    "main_queue": "work\\outputs\\action_playbook_queue.csv",
+    "coverage_followup": "work\\outputs\\coverage_followup_queue.csv",
+    "figure": "work\\figures\\model_vs_baseline_precision.png",
+    "main_queue_sha256": "ec4be1333421abc2458e99e8110534271b3a2f64d32533f8dbfd8459c8a1ef91",
+    "coverage_queue_sha256": "49553bf3a3b1044bb1b9a2fcb4fbf41ae2723e5a39460970a89f00fe4eb5cf62"
+  },
+  "artifact_status": "historical research exercise; not current recommendations or a deployed model",
+  "no_automatic_content_changes": true,
+  "no_causal_refresh_or_revenue_claim": true
+}
