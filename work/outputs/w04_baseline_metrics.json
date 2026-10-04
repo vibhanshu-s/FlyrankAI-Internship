@@ -1,0 +1,67 @@
+{
+  "contract": {
+    "revision": "50cbf7c3909d07be4d1b5906b4d09e882e5acbf2",
+    "source_month": "2026-03",
+    "feature_window": [
+      "2026-03-01",
+      "2026-03-14"
+    ],
+    "decision_date": "2026-03-18",
+    "outcome_window": [
+      "2026-03-18",
+      "2026-03-31"
+    ],
+    "minimum_earlier_impressions": 100,
+    "usable_days_per_window": 14,
+    "target": "later_impressions < 0.8 * earlier_impressions",
+    "features": [
+      "log_impressions",
+      "log_clicks",
+      "ctr_pct",
+      "weighted_position",
+      "active_search_days"
+    ],
+    "split": "GroupShuffleSplit(test_size=0.25, random_state=42)",
+    "primary_metric": "macro_precision_at_20_full_client_queues"
+  },
+  "data_fingerprint": "c73764da98e0259c44433ae22ebbc30ea8a7abfea0ee4d426dafa63fe5eab35c",
+  "split": {
+    "train_keys_sha256": "336ad9d04d1f18b9d893d89468b2fbab4a2da167455b7769f8c9f439e7c192cf",
+    "test_keys_sha256": "4a47c6942f8161e847d403e3182390e57381fc44b431da5cbf5c5348d25f26be",
+    "train_pages": 14070,
+    "test_pages": 43389,
+    "train_clients": 24,
+    "test_clients": 8
+  },
+  "baseline": {
+    "formula": "log1p(earlier_impressions) * (1 + weak_click_capture)",
+    "weak_click_capture": "ctr_pct < 0.5 and 1 <= weighted_position <= 20",
+    "boost": 2.0,
+    "reason_code": "visible_page_review",
+    "action": "review_search_performance"
+  },
+  "signal_verdicts": {
+    "demand": "MIXED",
+    "ctr_with_position": "CONFIRMED"
+  },
+  "training_bucket_counts": [
+    4012,
+    2961,
+    3194,
+    3216,
+    687
+  ],
+  "metrics": {
+    "roc_auc": 0.5160109442920527,
+    "average_precision": 0.3810846946959239,
+    "macro_precision_at_20": 0.37142857142857144,
+    "macro_base_rate_same_clients": 0.39809780809531503,
+    "full_queue_clients": 7,
+    "short_queue_clients": 1,
+    "short_queue_mean": 0.3333333333333333,
+    "pages": 43389,
+    "clients": 8,
+    "pooled_base_rate": 0.38249325866002903
+  },
+  "export_rows": 60534
+}

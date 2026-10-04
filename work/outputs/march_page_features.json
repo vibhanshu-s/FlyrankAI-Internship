@@ -1,0 +1,34 @@
+{
+  "contract": {
+    "revision": "50cbf7c3909d07be4d1b5906b4d09e882e5acbf2",
+    "source_month": "2026-03",
+    "feature_window": [
+      "2026-03-01",
+      "2026-03-14"
+    ],
+    "decision_date": "2026-03-18",
+    "outcome_window": [
+      "2026-03-18",
+      "2026-03-31"
+    ],
+    "minimum_earlier_impressions": 100,
+    "usable_days_per_window": 14,
+    "target": "later_impressions < 0.8 * earlier_impressions",
+    "features": [
+      "log_impressions",
+      "log_clicks",
+      "ctr_pct",
+      "weighted_position",
+      "active_search_days"
+    ],
+    "split": "GroupShuffleSplit(test_size=0.25, random_state=42)",
+    "primary_metric": "macro_precision_at_20_full_client_queues"
+  },
+  "source_rows": 9841378,
+  "gsc_rows_available": 3611061,
+  "pages": 60534,
+  "labelled_pages": 57459,
+  "unknown_targets": 3075,
+  "clients": 33,
+  "data_fingerprint": "c73764da98e0259c44433ae22ebbc30ea8a7abfea0ee4d426dafa63fe5eab35c"
+}
