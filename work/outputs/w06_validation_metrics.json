@@ -1,0 +1,306 @@
+{
+  "contract": {
+    "revision": "50cbf7c3909d07be4d1b5906b4d09e882e5acbf2",
+    "source_month": "2026-03",
+    "feature_window": [
+      "2026-03-01",
+      "2026-03-14"
+    ],
+    "decision_date": "2026-03-18",
+    "outcome_window": [
+      "2026-03-18",
+      "2026-03-31"
+    ],
+    "minimum_earlier_impressions": 100,
+    "usable_days_per_window": 14,
+    "target": "later_impressions < 0.8 * earlier_impressions",
+    "features": [
+      "log_impressions",
+      "log_clicks",
+      "ctr_pct",
+      "weighted_position",
+      "active_search_days"
+    ],
+    "split": "GroupShuffleSplit(test_size=0.25, random_state=42)",
+    "primary_metric": "macro_precision_at_20_full_client_queues"
+  },
+  "data_fingerprint": "c73764da98e0259c44433ae22ebbc30ea8a7abfea0ee4d426dafa63fe5eab35c",
+  "baseline": {
+    "formula": "log1p(earlier_impressions) * (1 + weak_click_capture)",
+    "weak_click_capture": "ctr_pct < 0.5 and 1 <= weighted_position <= 20",
+    "boost": 2.0,
+    "reason_code": "visible_page_review",
+    "action": "review_search_performance"
+  },
+  "week5_split": {
+    "train_keys_sha256": "336ad9d04d1f18b9d893d89468b2fbab4a2da167455b7769f8c9f439e7c192cf",
+    "test_keys_sha256": "4a47c6942f8161e847d403e3182390e57381fc44b431da5cbf5c5348d25f26be",
+    "train_pages": 14070,
+    "test_pages": 43389,
+    "train_clients": 24,
+    "test_clients": 8
+  },
+  "paper": {
+    "url": "https://github.com/flyrank-bih/flyrank-ml-internship-starter/blob/main/docs/flyrank-seo-research-march-2026.pdf",
+    "sha256": "4c1e59c6e1196af37ed3145b0b7fa964a352dcb920588203a434600483321f82",
+    "finding_pages": [
+      27,
+      29
+    ],
+    "methodology_page": 36
+  },
+  "before_after_metrics": {
+    "Row-random (weaker) / Frozen rule": {
+      "roc_auc": 0.5117817311711177,
+      "average_precision": 0.3642354736162466,
+      "macro_precision_at_20": 0.35500000000000004,
+      "macro_base_rate_same_clients": 0.38326083556422913,
+      "full_queue_clients": 20,
+      "short_queue_clients": 9,
+      "short_queue_mean": 0.20833333333333334,
+      "pages": 14365,
+      "clients": 29,
+      "pooled_base_rate": 0.36637660981552383
+    },
+    "Row-random (weaker) / Logistic regression": {
+      "roc_auc": 0.6193663320336877,
+      "average_precision": 0.4767482341000528,
+      "macro_precision_at_20": 0.5250000000000001,
+      "macro_base_rate_same_clients": 0.38326083556422913,
+      "full_queue_clients": 20,
+      "short_queue_clients": 9,
+      "short_queue_mean": 0.20833333333333334,
+      "pages": 14365,
+      "clients": 29,
+      "pooled_base_rate": 0.36637660981552383
+    },
+    "Client-held-out (Week 5) / Frozen rule": {
+      "roc_auc": 0.5160109442920527,
+      "average_precision": 0.3810846946959239,
+      "macro_precision_at_20": 0.37142857142857144,
+      "macro_base_rate_same_clients": 0.39809780809531503,
+      "full_queue_clients": 7,
+      "short_queue_clients": 1,
+      "short_queue_mean": 0.3333333333333333,
+      "pages": 43389,
+      "clients": 8,
+      "pooled_base_rate": 0.38249325866002903
+    },
+    "Client-held-out (Week 5) / Logistic regression": {
+      "roc_auc": 0.6215758364901738,
+      "average_precision": 0.48758182528768734,
+      "macro_precision_at_20": 0.5714285714285714,
+      "macro_base_rate_same_clients": 0.39809780809531503,
+      "full_queue_clients": 7,
+      "short_queue_clients": 1,
+      "short_queue_mean": 0.3333333333333333,
+      "pages": 43389,
+      "clients": 8,
+      "pooled_base_rate": 0.38249325866002903
+    }
+  },
+  "shared_client_counts": {
+    "Row-random (weaker)": 29,
+    "Client-held-out (Week 5)": 0
+  },
+  "oof_metrics": {
+    "Frozen rule / all OOF pages": {
+      "roc_auc": 0.5169988749431901,
+      "average_precision": 0.3685403696620565,
+      "macro_precision_at_20": 0.3826086956521739,
+      "macro_base_rate_same_clients": 0.4022673233211179,
+      "full_queue_clients": 23,
+      "short_queue_clients": 9,
+      "short_queue_mean": 0.26666666666666666,
+      "pages": 57459,
+      "clients": 32,
+      "pooled_base_rate": 0.36640038984319256
+    },
+    "Logistic regression / all OOF pages": {
+      "roc_auc": 0.584712609505931,
+      "average_precision": 0.4396758008502023,
+      "macro_precision_at_20": 0.5717391304347826,
+      "macro_base_rate_same_clients": 0.4022673233211179,
+      "full_queue_clients": 23,
+      "short_queue_clients": 9,
+      "short_queue_mean": 0.26666666666666666,
+      "pages": 57459,
+      "clients": 32,
+      "pooled_base_rate": 0.36640038984319256
+    }
+  },
+  "fold_metrics": [
+    {
+      "fold": 1,
+      "method": "Frozen rule",
+      "roc_auc": 0.5300653331812254,
+      "average_precision": 0.3784407661111405,
+      "macro_precision_at_20": 0.1,
+      "macro_base_rate_same_clients": 0.3809185911495291,
+      "full_queue_clients": 1,
+      "short_queue_clients": 0,
+      "short_queue_mean": null,
+      "pages": 15502,
+      "clients": 1,
+      "pooled_base_rate": 0.3809185911495291
+    },
+    {
+      "fold": 1,
+      "method": "Logistic regression",
+      "roc_auc": 0.602992141295919,
+      "average_precision": 0.45992387433203186,
+      "macro_precision_at_20": 0.6,
+      "macro_base_rate_same_clients": 0.3809185911495291,
+      "full_queue_clients": 1,
+      "short_queue_clients": 0,
+      "short_queue_mean": null,
+      "pages": 15502,
+      "clients": 1,
+      "pooled_base_rate": 0.3809185911495291
+    },
+    {
+      "fold": 2,
+      "method": "Frozen rule",
+      "roc_auc": 0.5514166113941117,
+      "average_precision": 0.42657271019068543,
+      "macro_precision_at_20": 0.55,
+      "macro_base_rate_same_clients": 0.4060249937929322,
+      "full_queue_clients": 1,
+      "short_queue_clients": 0,
+      "short_queue_mean": null,
+      "pages": 12083,
+      "clients": 1,
+      "pooled_base_rate": 0.4060249937929322
+    },
+    {
+      "fold": 2,
+      "method": "Logistic regression",
+      "roc_auc": 0.6289068257804337,
+      "average_precision": 0.5175668392596244,
+      "macro_precision_at_20": 0.55,
+      "macro_base_rate_same_clients": 0.4060249937929322,
+      "full_queue_clients": 1,
+      "short_queue_clients": 0,
+      "short_queue_mean": null,
+      "pages": 12083,
+      "clients": 1,
+      "pooled_base_rate": 0.4060249937929322
+    },
+    {
+      "fold": 3,
+      "method": "Frozen rule",
+      "roc_auc": 0.4675218412454843,
+      "average_precision": 0.4171404083999797,
+      "macro_precision_at_20": 0.5125,
+      "macro_base_rate_same_clients": 0.4886256403188386,
+      "full_queue_clients": 4,
+      "short_queue_clients": 3,
+      "short_queue_mean": 0.1111111111111111,
+      "pages": 9958,
+      "clients": 7,
+      "pooled_base_rate": 0.4538059851375778
+    },
+    {
+      "fold": 3,
+      "method": "Logistic regression",
+      "roc_auc": 0.5399560540710606,
+      "average_precision": 0.49557939779726445,
+      "macro_precision_at_20": 0.5875,
+      "macro_base_rate_same_clients": 0.4886256403188386,
+      "full_queue_clients": 4,
+      "short_queue_clients": 3,
+      "short_queue_mean": 0.1111111111111111,
+      "pages": 9958,
+      "clients": 7,
+      "pooled_base_rate": 0.4538059851375778
+    },
+    {
+      "fold": 4,
+      "method": "Frozen rule",
+      "roc_auc": 0.5188796462145687,
+      "average_precision": 0.2810618854192164,
+      "macro_precision_at_20": 0.2875,
+      "macro_base_rate_same_clients": 0.35761170939375914,
+      "full_queue_clients": 8,
+      "short_queue_clients": 4,
+      "short_queue_mean": 0.41666666666666663,
+      "pages": 9957,
+      "clients": 12,
+      "pooled_base_rate": 0.2814100632720699
+    },
+    {
+      "fold": 4,
+      "method": "Logistic regression",
+      "roc_auc": 0.5702375412191851,
+      "average_precision": 0.3332822910707164,
+      "macro_precision_at_20": 0.5375,
+      "macro_base_rate_same_clients": 0.35761170939375914,
+      "full_queue_clients": 8,
+      "short_queue_clients": 4,
+      "short_queue_mean": 0.41666666666666663,
+      "pages": 9957,
+      "clients": 12,
+      "pooled_base_rate": 0.2814100632720699
+    },
+    {
+      "fold": 5,
+      "method": "Frozen rule",
+      "roc_auc": 0.4809176700960862,
+      "average_precision": 0.288108097246138,
+      "macro_precision_at_20": 0.4222222222222222,
+      "macro_base_rate_same_clients": 0.4055342905575357,
+      "full_queue_clients": 9,
+      "short_queue_clients": 2,
+      "short_queue_mean": 0.2,
+      "pages": 9959,
+      "clients": 11,
+      "pooled_base_rate": 0.29330254041570436
+    },
+    {
+      "fold": 5,
+      "method": "Logistic regression",
+      "roc_auc": 0.6241220326998766,
+      "average_precision": 0.4187974960772874,
+      "macro_precision_at_20": 0.5944444444444446,
+      "macro_base_rate_same_clients": 0.4055342905575357,
+      "full_queue_clients": 9,
+      "short_queue_clients": 2,
+      "short_queue_mean": 0.2,
+      "pages": 9959,
+      "clients": 11,
+      "pooled_base_rate": 0.29330254041570436
+    }
+  ],
+  "paired_client_gain": {
+    "mean": 0.1891304347826087,
+    "bootstrap_95_lower": 0.11516304347826087,
+    "bootstrap_95_upper": 0.2673913043478261,
+    "full_queue_clients": 23,
+    "resamples": 2000,
+    "seed": 42
+  },
+  "fold_gains": [
+    0.5,
+    0.0,
+    0.07500000000000007,
+    0.25,
+    0.17222222222222233
+  ],
+  "selected_method": "logistic_regression_oof",
+  "selection_gate": "mean gain >= 0.05; lower bootstrap endpoint > 0; positive gains in >= 4/5 folds",
+  "leak_control": {
+    "clean_auc": 0.6215758364901738,
+    "leaked_auc": 1.0,
+    "leaked_input_removed": true
+  },
+  "oof_keys_sha256": "ceecd92efb19f69f10959d4c38687b06ecef1ea06e03872c4c1b6065196253f1",
+  "oof_scores_sha256": "9d136798ef383236c5c6cf7166e979b0559b6e30bbe4e05ec5ea06e44f6e153b",
+  "limitations": [
+    "one month only",
+    "later coverage selects evaluation population",
+    "client sizes uneven",
+    "model learned from other clients' later labels; not a deployment time test",
+    "earlier denominator can introduce regression-to-the-mean effects",
+    "no observed editing benefit"
+  ]
+}
